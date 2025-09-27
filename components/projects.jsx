@@ -17,7 +17,7 @@ export default function Projects() {
       image: "/store.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/blob/main/README.md",
+      githubUrl: "https://github.com/Win11HW/Ecommerce/",
     },
     {
       title: "E-Commerce Dashboard Website",
@@ -26,7 +26,7 @@ export default function Projects() {
       image: "/dashboard.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/blob/main/README.md",
+      githubUrl: "https://github.com/Win11HW/Ecommerce/",
     },
     {
       title: "Portfolio Website",
