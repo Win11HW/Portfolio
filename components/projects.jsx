@@ -34,8 +34,8 @@ export default function Projects() {
         "A personal portfolio website showcasing projects, skills, and contact information with a modern design.",
       image: "/protfolio.png",
       tags: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://portfolio-l185lfjxr-windownix-2139s-projects.vercel.app/",
+      githubUrl: "https://github.com/Win11HW/Portfolio/",
     },
   ]
 
