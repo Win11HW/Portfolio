@@ -131,7 +131,7 @@ export default function Footer() {
                   href="tel:+1234567890"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  218948606475
+                  (+218)948606475
                 </a>
               </li>
               <li className="flex items-center gap-2">
