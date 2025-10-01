@@ -41,9 +41,9 @@ export default function About() {
           </div>
 
           <p className="text-gray-300 mb-8 text-lg leading-relaxed text-center">
-            I specialize in building responsive, accessible, and performant web applications using modern technologies.
-            With a keen eye for design and a commitment to code quality, I create solutions that are both beautiful and
-            functional.
+            Full Stack Developer with expertise in building responsive and scalable web applications. Skilled in 
+            modern frontend and backend technologies with strong problem-solving abilities and a passion for clean, 
+            maintainable code.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 max-w-xl mx-auto">
