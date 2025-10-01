@@ -22,7 +22,7 @@ export default function Projects() {
     {
       title: "E-Commerce Dashboard Website",
       description:
-        "Dashboard for admin and User to add or delete or Edite and many tools",
+        "Built an admin and user dashboard with tools to add, edit, or delete products, enhancing store management efficiency.",
       image: "/dashboard.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
