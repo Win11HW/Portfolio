@@ -13,9 +13,7 @@ export default function Projects() {
     {
       title: "E-Commerce Website",
       description:
-        "Developed a fully functional online store with product filtering, search, cart, order placement, and user 
-authentication. Implemented a responsive design ensuring seamless usability across desktop, tablet, and 
-mobile devices.",
+        "Developed a fully functional online store with product filtering, search, cart, order placement, and user authentication. Implemented a responsive design ensuring seamless usability across desktop, tablet, and mobile devices.",
       image: "/store.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
