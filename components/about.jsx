@@ -54,7 +54,7 @@ export default function About() {
               <MapPin className="text-purple-500" size={24} />
               <span className="text-gray-300">Libya, Tripoli</span>
             </div>
-            <div className="flex items-center gap-3 bg-gray-800 p-4 rounded-lg w-max">
+            <div className="flex items-center gap-3 bg-gray-800 p-4 rounded-lg">
               <Mail className="text-purple-500" size={24} />
               <span className="text-gray-300">aybqam@gmail.com</span>
             </div>
