@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaFigma, FaBootstrap, FaNpm, FaWordpress } from "react-icons/fa"
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaFigma, FaBootstrap, FaNpm, FaWordpress, FaDocker} from "react-icons/fa"
 import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiJest, SiWebpack, SiVercel, SiFirebase, SiFramer, SiSass, } from "react-icons/si"
 import { RiFirebaseFill } from "react-icons/ri"
 import { TbBrandReactNative } from "react-icons/tb"
@@ -50,6 +50,7 @@ export default function Skills() {
     { name: "php", icon: <FaPhp className="text-[#8892BF]" size={24} /> },
     { name: "Mysql", icon: <SiMysql className="text-[#F29111]" size={24} /> },
     { name: "Mongodb", icon: <SiMongodb className="text-[#47A248]" size={24} /> },
+    { name: "Docker", icon: <FaDocker className="text-[#1572B6]" size={24} /> },
   ]
 
   return (
