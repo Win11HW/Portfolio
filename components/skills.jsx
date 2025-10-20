@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaFigma, FaBootstrap, FaNpm, FaWordpress, FaDocker} from "react-icons/fa"
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaPhp, FaBootstrap, FaNpm, FaDocker} from "react-icons/fa"
 import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiJest, SiWebpack, SiVercel, SiFirebase, SiFramer, SiSass, } from "react-icons/si"
 import { RiFirebaseFill } from "react-icons/ri"
 import { TbBrandReactNative } from "react-icons/tb"
@@ -44,12 +44,17 @@ export default function Skills() {
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" size={36} /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3]" size={36} /> },
     { name: "UI/UX Design", icon: <MdDesignServices className="text-purple-500" size={36} /> },
-  ]
-
-  const technologies = [
     { name: "php", icon: <FaPhp className="text-[#8892BF]" size={24} /> },
     { name: "Mysql", icon: <SiMysql className="text-[#F29111]" size={24} /> },
     { name: "Mongodb", icon: <SiMongodb className="text-[#47A248]" size={24} /> },
+  ]
+
+  const technologies = [
+    { name: "Git", icon: <FaGitAlt className="text-[#F05032]" size={24} /> },
+    { name: "GitHub", icon: <FaGithub size={24} /> },
+    { name: "Redux", icon: <SiRedux className="text-[#764ABC]" size={24} /> },
+    { name: "npm", icon: <FaNpm className="text-[#CB3837]" size={24} /> },
+    { name: "Vercel", icon: <SiVercel size={24} /> },
     { name: "Docker", icon: <FaDocker className="text-[#1572B6]" size={24} /> },
   ]
 
