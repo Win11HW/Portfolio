@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { Mail, MapPin } from "lucide-react"
 import Link from "next/link"
 
@@ -10,6 +10,32 @@ const TEXT_PRIMARY = "text-white";
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef(null)
+  const [lang, setLang] = useState("en")
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en')
+    }
+  }, [])
+
+  const t = useMemo(() => {
+    if (lang === 'ar') {
+      return {
+        eyebrow: 'نبذة عني',
+        title: 'مطوّر مواقع بتجربة مستخدم جميلة وعملية',
+        paragraph: 'أطوّر تطبيقات ويب سريعة، متاحة، وعالية الأداء باستخدام أحدث التقنيات، مع اهتمام خاص بالجماليات وجودة الكود.',
+        location: 'ليبيا، طرابلس',
+        resume: 'تحميل السيرة الذاتية',
+      }
+    }
+    return {
+      eyebrow: 'About Me',
+      title: 'Website Developer with a passion for creating beautiful user experiences',
+      paragraph: 'I specialize in building responsive, accessible, and performant web applications using modern technologies. With a keen eye for design and a commitment to code quality, I create solutions that are both beautiful and functional.',
+      location: 'Libya, Tripoli',
+      resume: 'Download Resume',
+    }
+  }, [lang])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,23 +62,21 @@ export default function About() {
           }`}
         >
           <div className="text-center mb-10">
-            <h2 className="text-sm uppercase tracking-wider text-purple-500 mb-2">About Me</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Website Developer with a passion for creating beautiful user experiences
+            <h2 className="text-xl uppercase tracking-wider text-purple-500 mb-2" suppressHydrationWarning>{t.eyebrow}</h2>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6" suppressHydrationWarning>
+              {t.title}
             </h3>
             <div className="w-20 h-1 bg-purple-500 mx-auto"></div>
           </div>
 
-          <p className="text-gray-300 mb-8 text-lg leading-relaxed text-center">
-            I specialize in building responsive, accessible, and performant web applications using modern technologies.
-            With a keen eye for design and a commitment to code quality, I create solutions that are both beautiful and
-            functional.
+          <p className="text-gray-300 mb-8 text-lg leading-relaxed text-center" suppressHydrationWarning>
+            {t.paragraph}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 max-w-xl mx-auto">
             <div className="flex items-center gap-3 bg-gray-800 p-4 rounded-lg">
               <MapPin className="text-purple-500" size={24} />
-              <span className="text-gray-300">Libya, Tripoli</span>
+              <span className="text-gray-300" suppressHydrationWarning>{t.location}</span>
             </div>
             <div className="flex items-center gap-3 bg-gray-800 p-4 rounded-lg">
               <Mail className="text-purple-500" size={24} />
@@ -65,7 +89,7 @@ export default function About() {
               href="Ayoub Alayoubi.pdf"
               className={`px-6 py-3 rounded-lg ${PRIMARY_GRADIENT} ${TEXT_PRIMARY} font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all hover:scale-105`}
             >
-              Download Resume
+              <span suppressHydrationWarning>{t.resume}</span>
             </Link>
           </div>
         </div>

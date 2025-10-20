@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 
@@ -13,15 +13,43 @@ const TEXT_TERTIARY = "text-gray-400";
 export default function Hero() {
   const textRef = useRef(null);
 
+  const [lang, setLang] = useState("en");
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      setLang(document.documentElement.lang === "ar" ? "ar" : "en");
+    }
+  }, []);
+
+  const t = useMemo(() => {
+    if (lang === "ar") {
+      return {
+        welcome: "مرحبًا بكم في معرض أعمالي",
+        hiPrefix: "مرحبًا، أنا",
+        imA: "أنا",
+        roles: ["Frontend Developer", "Backend Developer", "FullStack Developer"],
+        paragraph:
+          "أبني تجارب ويب جذّابة وسريعة الاستجابة وسهلة الاستخدام باستخدام تقنيات حديثة وكود نظيف.",
+        viewWork: "شاهد أعمالي",
+        contactMe: "تواصل معي",
+      };
+    }
+    return {
+      welcome: "Welcome to my portfolio",
+      hiPrefix: "Hi, I'm",
+      imA: "I'm a",
+      roles: ["Frontend Developer", "Backend Developer", "FullStack Developer"],
+      paragraph:
+        "I create engaging, responsive, and user-friendly web experiences with modern technologies and clean code.",
+      viewWork: "View My Work",
+      contactMe: "Contact Me",
+    };
+  }, [lang]);
+
   useEffect(() => {
     const textElement = textRef.current;
     if (!textElement) return;
 
-    const roles = [
-      "Frontend Developer",
-      "Backend Developer",
-      "FullStack Developer",
-    ];
+    const roles = t.roles;
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -48,7 +76,7 @@ export default function Hero() {
     };
 
     setTimeout(type, 1000);
-  }, []);
+  }, [t.roles]);
 
   return (
     <section
@@ -56,23 +84,22 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center text-center bg-transparent"
     >
       <div className="container px-4 md:px-6 z-10">
-        <span className={`px-4 py-1 mb-4 rounded-full text-sm font-medium ${SECONDARY_BG} ${TEXT_SECONDARY}`}>
-          Welcome to my portfolio
+        <span suppressHydrationWarning className={`px-4 py-1 mb-4 rounded-full text-sm font-medium ${SECONDARY_BG} ${TEXT_SECONDARY}`}>
+          {t.welcome}
         </span>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-          Hi, I'm <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6" suppressHydrationWarning>
+          {t.hiPrefix} <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
             Ayoub Alayoubi
           </span>
         </h1>
 
-        <div className={`text-xl md:text-2xl ${TEXT_SECONDARY} mb-8 h-8`}>
-          I'm a <span ref={textRef} className={`${TEXT_PRIMARY} font-medium`}></span>
+        <div className={`text-xl md:text-2xl ${TEXT_SECONDARY} mb-8 h-8`} suppressHydrationWarning>
+          {t.imA} <span ref={textRef} className={`${TEXT_PRIMARY} font-medium`}></span>
         </div>
 
-        <p className={`max-w-2xl ${TEXT_TERTIARY} mb-10 mx-auto`}>
-          I create engaging, responsive, and user-friendly web experiences
-          with modern technologies and clean code.
+        <p className={`max-w-2xl ${TEXT_TERTIARY} mb-10 mx-auto`} suppressHydrationWarning>
+          {t.paragraph}
         </p>
 
         <div className="flex justify-center items-center flex-col sm:flex-row gap-4">
@@ -80,13 +107,13 @@ export default function Hero() {
             href="#projects"
             className={`px-6 py-3 rounded-lg ${PRIMARY_GRADIENT} ${TEXT_PRIMARY} font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all hover:scale-105`}
           >
-            View My Work
+            <span suppressHydrationWarning>{t.viewWork}</span>
           </Link>
           <Link
             href="#contact"
             className={`px-6 py-3 rounded-lg ${SECONDARY_BG} ${TEXT_PRIMARY} font-medium transition-all hover:scale-105`}
           >
-            Contact Me
+            <span suppressHydrationWarning>{t.contactMe}</span>
           </Link>
         </div>
       </div>

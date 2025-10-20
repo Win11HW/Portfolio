@@ -1,5 +1,5 @@
 import { Send, Mail, Phone, MapPin } from "lucide-react";
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,59 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Contact() {
   const form = useRef();
   const [status, setStatus] = useState("");
+  const [lang, setLang] = useState('en');
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en');
+    }
+  }, []);
+
+  const t = useMemo(() => {
+    if (lang === 'ar') {
+      return {
+        headingA: 'تواصل',
+        headingB: 'معي',
+        intro: 'هل لديك مشروع أو ترغب في التعاون؟ تواصل معي عبر النموذج أدناه أو من خلال معلومات الاتصال.',
+        contactInfo: 'معلومات الاتصال',
+        email: 'البريد الإلكتروني',
+        phone: 'الهاتف',
+        location: 'الموقع',
+        follow: 'تابعني',
+        yourName: 'اسمك',
+        yourEmail: 'بريدك الإلكتروني',
+        subject: 'الموضوع',
+        message: 'الرسالة',
+        // Keep placeholder in English as requested
+        namePlaceholder: 'Ayoub Alayoubi',
+        emailPlaceholder: 'ayoub@example.com',
+        subjectPlaceholder: 'استفسار مشروع',
+        messagePlaceholder: 'مرحبًا، أود التحدث حول...',
+        send: 'إرسال الرسالة',
+        city: 'ليبيا، طرابلس',
+      }
+    }
+    return {
+      headingA: 'Get In',
+      headingB: 'Touch',
+      intro: 'Have a project in mind or want to collaborate? Feel free to reach out to me using the form below or through my contact information.',
+      contactInfo: 'Contact Information',
+      email: 'Email',
+      phone: 'Phone',
+      location: 'Location',
+      follow: 'Follow Me',
+      yourName: 'Your Name',
+      yourEmail: 'Your Email',
+      subject: 'Subject',
+      message: 'Message',
+      namePlaceholder: 'Ayoub Alayoubi',
+      emailPlaceholder: 'ayoub@example.com',
+      subjectPlaceholder: 'Project Inquiry',
+      messagePlaceholder: "Hello, I'd like to talk about...",
+      send: 'Send Message',
+      city: 'Libya, Tripoli',
+    }
+  }, [lang]);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -51,21 +104,20 @@ export default function Contact() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get In{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-              Touch
+            <span suppressHydrationWarning>{t.headingA} </span>
+            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent" suppressHydrationWarning>
+              {t.headingB}
             </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach
-            out to me using the form below or through my contact information.
+          <p className="text-gray-400 max-w-2xl mx-auto" suppressHydrationWarning>
+            {t.intro}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+            <h3 className="text-xl font-semibold mb-6" suppressHydrationWarning>{t.contactInfo}</h3>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
@@ -73,7 +125,7 @@ export default function Contact() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Email</h4>
+                  <h4 className="font-medium mb-1" suppressHydrationWarning>{t.email}</h4>
                   <a
                     href="mailto:aybqam@gmail.com"
                     className="text-gray-400 hover:text-white transition-colors"
@@ -88,7 +140,7 @@ export default function Contact() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
+                  <h4 className="font-medium mb-1" suppressHydrationWarning>{t.phone}</h4>
                   <a
                     href="tel:+1234567890"
                     className="text-gray-400 hover:text-white transition-colors"
@@ -103,14 +155,14 @@ export default function Contact() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-gray-400">Libya, Tripoli</p>
+                  <h4 className="font-medium mb-1" suppressHydrationWarning>{t.location}</h4>
+                  <p className="text-gray-400" suppressHydrationWarning>{t.city}</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-10">
-              <h3 className="text-xl font-semibold mb-4">Follow Me</h3>
+              <h3 className="text-xl font-semibold mb-4" suppressHydrationWarning>{t.follow}</h3>
               <div className="flex gap-4">
                 <a
                   href="https://github.com/Win11HW"
@@ -154,7 +206,7 @@ export default function Contact() {
                     htmlFor="name"
                     className="block text-sm font-medium mb-2"
                   >
-                    Your Name
+                    <span suppressHydrationWarning>{t.yourName}</span>
                   </label>
                   <input
                     type="text"
@@ -162,7 +214,7 @@ export default function Contact() {
                     name="name"
                     required
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="Ayoub Alayoubi"
+                    placeholder={t.namePlaceholder}
                   />
                 </div>
                 <div>
@@ -170,7 +222,7 @@ export default function Contact() {
                     htmlFor="email"
                     className="block text-sm font-medium mb-2"
                   >
-                    Your Email
+                    <span suppressHydrationWarning>{t.yourEmail}</span>
                   </label>
                   <input
                     type="email"
@@ -178,7 +230,7 @@ export default function Contact() {
                     name="email"
                     required
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="ayoub@example.com"
+                    placeholder={t.emailPlaceholder}
                   />
                 </div>
               </div>
@@ -187,8 +239,8 @@ export default function Contact() {
                 <label
                   htmlFor="subject"
                   className="block text-sm font-medium mb-2"
-                >
-                  Subject
+                  >
+                    <span suppressHydrationWarning>{t.subject}</span>
                 </label>
                 <input
                   type="text"
@@ -196,7 +248,7 @@ export default function Contact() {
                   name="subject"
                   required
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Project Inquiry"
+                    placeholder={t.subjectPlaceholder}
                 />
               </div>
 
@@ -204,8 +256,8 @@ export default function Contact() {
                 <label
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
-                >
-                  Message
+                  >
+                    <span suppressHydrationWarning>{t.message}</span>
                 </label>
                 <textarea
                   id="message"
@@ -213,7 +265,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Hello, I'd like to talk about..."
+                    placeholder={t.messagePlaceholder}
                 />
               </div>
 
@@ -222,7 +274,7 @@ export default function Contact() {
                 value="Send"
                 className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all flex items-center justify-center gap-2"
               >
-                Send Message
+                <span suppressHydrationWarning>{t.send}</span>
                 <Send size={16} />
               </button>
             </form>

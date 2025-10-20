@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import { Menu, X, Github } from "lucide-react"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [lang, setLang] = useState('en')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,13 +18,38 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ]
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en')
+    }
+  }, [])
+
+  const switchLang = (target) => {
+    if (typeof document === 'undefined') return
+    const expires = new Date()
+    expires.setFullYear(expires.getFullYear() + 1)
+    document.cookie = `lang=${target}; path=/; expires=${expires.toUTCString()}`
+    window.location.reload()
+  }
+  
+  const navLinks = useMemo(() => {
+    if (lang === 'ar') {
+      return [
+        { name: "الرئيسية", href: "#home" },
+        { name: "نبذة", href: "#about" },
+        { name: "المهارات", href: "#skills" },
+        { name: "المشاريع", href: "#projects" },
+        { name: "تواصل", href: "#contact" },
+      ]
+    }
+    return [
+      { name: "Home", href: "#home" },
+      { name: "About", href: "#about" },
+      { name: "Skills", href: "#skills" },
+      { name: "Projects", href: "#projects" },
+      { name: "Contact", href: "#contact" },
+    ]
+  }, [lang])
 
   return (
     <header
@@ -38,27 +64,37 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <div key={link.name}>
                 <Link href={link.href} className="text-gray-300 hover:text-white transition-colors relative group">
-                  {link.name}
+                  <span suppressHydrationWarning>{link.name}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </div>
             ))}
           </nav>
 
-          {/* Social Icons */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Social Icons + Language Toggle */}
+          <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/Win11HW"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-all hover:-translate-y-1 duration-200"
             >
               <Github size={20} />
             </a>
+            <div className="p-[1px] rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
+              <button
+                type="button"
+                onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+                className="px-3 py-1 rounded-full bg-gray-900 text-gray-100 text-xs tracking-wider hover:bg-gray-800 transition"
+                aria-label="Toggle language"
+              >
+                {lang === 'ar' ? 'EN' : 'AR'}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,10 +119,10 @@ export default function Navbar() {
                 className="text-gray-300 hover:text-white py-2 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                {link.name}
+                <span suppressHydrationWarning>{link.name}</span>
               </Link>
             ))}
-            <div className="flex space-x-4 pt-4 border-t border-gray-800">
+            <div className="flex items-center justify-between pt-4 border-t border-gray-800">
               <a
                 href="https://github.com/Win11HW"
                 target="_blank"
@@ -95,6 +131,16 @@ export default function Navbar() {
               >
                 <Github size={20} />
               </a>
+              <div className="p-[1px] rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
+                <button
+                  type="button"
+                  onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+                  className="px-3 py-1 rounded-full bg-gray-900 text-gray-100 text-xs tracking-wider hover:bg-gray-800 transition"
+                  aria-label="Toggle language"
+                >
+                  {lang === 'ar' ? 'EN' : 'AR'}
+                </button>
+              </div>
             </div>
           </nav>
         </div>

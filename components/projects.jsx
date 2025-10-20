@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { ExternalLink, Github, ArrowRight } from "lucide-react"
@@ -9,7 +9,33 @@ export default function Projects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
-  const projects = [
+  const [lang, setLang] = useState('en')
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en')
+    }
+  }, [])
+
+  const t = useMemo(() => {
+    if (lang === 'ar') {
+      return {
+        heading: 'مشاريعي',
+        subtitle: 'بعض من أعمالي الأخيرة التي تُظهر مهارات وتقنيات متنوعة تعاملت معها.',
+        live: 'الموقع المباشر',
+        source: 'المصدر',
+        viewAll: 'عرض كل المشاريع',
+      }
+    }
+    return {
+      heading: 'My Projects',
+      subtitle: "Here are some of my recent projects. Each project showcases different skills and technologies I've worked with.",
+      live: 'Live Demo',
+      source: 'Source Code',
+      viewAll: 'View All Projects',
+    }
+  }, [lang])
+
+  const baseProjects = useMemo(() => ([
     {
       title: "E-Commerce Website",
       description:
@@ -17,7 +43,7 @@ export default function Projects() {
       image: "/store.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/blob/main/README.md",
+      githubUrl: "hhttps://github.com/Win11HW/Ecommerce/",
     },
     {
       title: "E-Commerce Dashboard Website",
@@ -26,7 +52,7 @@ export default function Projects() {
       image: "/dashboard.png",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/blob/main/README.md",
+      githubUrl: "https://github.com/Win11HW/Ecommerce/",
     },
     {
       title: "Portfolio Website",
@@ -37,7 +63,28 @@ export default function Projects() {
       liveUrl: "https://dev-portfolio-work.vercel.app/",
       githubUrl: "https://github.com/Win11HW/Portfolio",
     },
-  ]
+  ]), [])
+
+  const projects = useMemo(() => {
+    if (lang !== 'ar') return baseProjects
+    return [
+      {
+        ...baseProjects[0],
+        title: 'موقع تجارة إلكترونية',
+        description: 'متجر إلكتروني يعرض المنتجات مع إمكانية الشراء، والإضافة للمفضّلة، والبحث بسهولة. يتميز بواجهة سلسة وخدمات إضافية تحسّن تجربة المستخدم.',
+      },
+      {
+        ...baseProjects[1],
+        title: 'لوحة تحكّم للتجارة الإلكترونية',
+        description: 'لوحة تحكّم للمشرف والمستخدم لإضافة العناصر أو حذفها أو تعديلها، مع العديد من الأدوات المساعدة لإدارة المتجر.',
+      },
+      {
+        ...baseProjects[2],
+        title: 'موقع معرض أعمال',
+        description: 'موقع شخصي لعرض المشاريع والمهارات ومعلومات التواصل بتصميم حديث وتجربة استخدام مريحة.',
+      },
+    ]
+  }, [lang, baseProjects])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -64,8 +111,7 @@ export default function Projects() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-            My{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Projects</span>
+            <span suppressHydrationWarning>{t.heading}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -73,8 +119,7 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-400 max-w-2xl mx-auto"
           >
-            Here are some of my recent projects. Each project showcases different skills and technologies I've worked
-            with.
+            <span suppressHydrationWarning>{t.subtitle}</span>
           </motion.p>
         </div>
 
@@ -117,7 +162,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     <ExternalLink size={16} />
-                    Live Demo
+                    <span suppressHydrationWarning>{t.live}</span>
                   </a>
                   <a
                     href={project.githubUrl}
@@ -126,7 +171,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     <Github size={16} />
-                    Source Code
+                    <span suppressHydrationWarning>{t.source}</span>
                   </a>
                 </div>
               </div>
@@ -144,7 +189,7 @@ export default function Projects() {
             href="#"
             className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
           >
-            View All Projects
+            <span suppressHydrationWarning>{t.viewAll}</span>
             <ArrowRight size={16} />
           </a>
         </motion.div>

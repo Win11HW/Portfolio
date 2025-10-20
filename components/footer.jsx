@@ -1,10 +1,46 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const [lang, setLang] = useState('en');
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en');
+    }
+  }, []);
+
+  const t = useMemo(() => {
+    if (lang === 'ar') {
+      return {
+        tagline: 'مطور واجهات أمامية شغوف يصنع تجارب ويب جميلة وعملية باستخدام تقنيات حديثة.',
+        quickLinks: 'روابط سريعة',
+        home: 'الرئيسية',
+        about: 'نبذة',
+        skills: 'المهارات',
+        projects: 'المشاريع',
+        contact: 'تواصل',
+        contactInfo: 'معلومات الاتصال',
+        city: 'ليبيا، طرابلس',
+        rights: 'جميع الحقوق محفوظة.',
+      }
+    }
+    return {
+      tagline: 'A passionate frontend developer creating beautiful and functional web experiences with modern technologies.',
+      quickLinks: 'Quick Links',
+      home: 'Home',
+      about: 'About',
+      skills: 'Skills',
+      projects: 'Projects',
+      contact: 'Contact',
+      contactInfo: 'Contact Info',
+      city: 'Libya, Tripoli',
+      rights: 'All rights reserved.',
+    }
+  }, [lang]);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -22,9 +58,8 @@ export default function Footer() {
                 Dev<span className="text-white">Portfolio</span>
               </span>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-md">
-              A passionate frontend developer creating beautiful and functional
-              web experiences with modern technologies.
+            <p className="text-gray-400 mb-6 max-w-md" suppressHydrationWarning>
+              {t.tagline}
             </p>
             <div className="flex space-x-4">
               <a
@@ -45,14 +80,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4" suppressHydrationWarning>{t.quickLinks}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="#home"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Home
+                  <span suppressHydrationWarning>{t.home}</span>
                 </Link>
               </li>
               <li>
@@ -60,7 +95,7 @@ export default function Footer() {
                   href="#about"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  About
+                  <span suppressHydrationWarning>{t.about}</span>
                 </Link>
               </li>
               <li>
@@ -68,7 +103,7 @@ export default function Footer() {
                   href="#skills"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Skills
+                  <span suppressHydrationWarning>{t.skills}</span>
                 </Link>
               </li>
               <li>
@@ -76,7 +111,7 @@ export default function Footer() {
                   href="#projects"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Projects
+                  <span suppressHydrationWarning>{t.projects}</span>
                 </Link>
               </li>
               <li>
@@ -84,14 +119,14 @@ export default function Footer() {
                   href="#contact"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Contact
+                  <span suppressHydrationWarning>{t.contact}</span>
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4" suppressHydrationWarning>{t.contactInfo}</h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <span className="text-purple-500">
@@ -146,8 +181,8 @@ export default function Footer() {
                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                   </svg>
                 </span>
-                <span className="text-gray-400">
-                  Libya, Tripoli
+                <span className="text-gray-400" suppressHydrationWarning>
+                  {t.city}
                 </span>
               </li>
             </ul>
@@ -155,8 +190,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} Ayoub Alayoubi. All rights reserved.
+          <p className="text-gray-400 text-sm mb-4 md:mb-0" suppressHydrationWarning>
+            © {new Date().getFullYear()} Ayoub Alayoubi. {t.rights}
           </p>
 
           <motion.button
