@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
   const cookieStore = cookies()
   const cookieLang = cookieStore.get("lang")?.value
   // Default to Arabic when not set; only force EN if cookie explicitly 'en'
-  const lang = cookieLang === "en" ? "en" : "ar"
+
+  const lang = cookieLang === "ar" ? "ar" : "en"
   const dir = lang === "ar" ? "rtl" : "ltr"
   const fontClass = lang === "ar" ? cairo.className : inter.className
 

@@ -85,16 +85,17 @@ export default function Navbar() {
             >
               <Github size={20} />
             </a>
-            <div className="p-[1px] rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
-              <button
-                type="button"
-                onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-                className="px-3 py-1 rounded-full bg-gray-900 text-gray-100 text-xs tracking-wider hover:bg-gray-800 transition"
-                aria-label="Toggle language"
-              >
-                {lang === 'ar' ? 'EN' : 'AR'}
-              </button>
-            </div>
+            <div className="rounded-full">
+            <button
+              type="button"
+              onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+              className="px-3 py-1 rounded-full bg-transparent text-white text-xs tracking-wider border border-white hover:bg-white/20 transition"
+              aria-label="Toggle language"
+            >
+              {lang === 'ar' ? 'EN' : 'AR'}
+            </button>
+          </div>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -131,16 +132,17 @@ export default function Navbar() {
               >
                 <Github size={20} />
               </a>
-              <div className="p-[1px] rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
-                <button
-                  type="button"
-                  onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-                  className="px-3 py-1 rounded-full bg-gray-900 text-gray-100 text-xs tracking-wider hover:bg-gray-800 transition"
-                  aria-label="Toggle language"
-                >
-                  {lang === 'ar' ? 'EN' : 'AR'}
-                </button>
-              </div>
+              <div className="rounded-full">
+              <button
+                type="button"
+                onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+                className="px-4 py-2 rounded-full bg-transparent text-white text-sm font-semibold tracking-wider border-2 border-white hover:bg-white/20 transition"
+                aria-label="Toggle language"
+              >
+                {lang === 'ar' ? 'EN' : 'AR'}
+              </button>
+            </div>
+
             </div>
           </nav>
         </div>
