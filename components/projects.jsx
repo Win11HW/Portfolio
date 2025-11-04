@@ -40,7 +40,7 @@ export default function Projects() {
       title: "E-Commerce Website",
       description:
         "An online store that showcases products with the ability to purchase, add to favorites, and search easily. It features a seamless interface and additional services that enhance the user experience.",
-      image: "/store.png",
+      image: "/store.webp",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
       githubUrl: "hhttps://github.com/Win11HW/Ecommerce/",
@@ -49,7 +49,7 @@ export default function Projects() {
       title: "E-Commerce Dashboard Website",
       description:
         "Dashboard for admin and User to add or delete or Edite and many tools",
-      image: "/dashboard.png",
+      image: "/dashboard.webp",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
       githubUrl: "https://github.com/Win11HW/Ecommerce/",
@@ -58,7 +58,7 @@ export default function Projects() {
       title: "Portfolio Website",
       description:
         "A personal portfolio website showcasing projects, skills, and contact information with a modern design.",
-      image: "/protfolio.png",
+      image: "/protfolio.webp",
       tags: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
       liveUrl: "https://dev-portfolio-work.vercel.app/",
       githubUrl: "https://github.com/Win11HW/Portfolio",
