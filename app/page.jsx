@@ -11,7 +11,6 @@ import Footer from "@/components/footer"
 import DarkVeil from '@/components/DarkVeil';
 
 
-
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
 
