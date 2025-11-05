@@ -75,7 +75,7 @@ export default function Hero() {
       setTimeout(type, typingSpeed);
     };
 
-    setTimeout(type, 1000);
+    setTimeout(type, 500);
   }, [t.roles]);
 
   return (
