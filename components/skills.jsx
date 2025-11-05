@@ -4,7 +4,6 @@ import { useRef, useEffect, useState, useMemo } from "react"
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaPhp, FaBootstrap, FaNpm, FaDocker} from "react-icons/fa"
 import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiJest, SiWebpack, SiVercel, SiFirebase, SiFramer, SiSass, } from "react-icons/si"
 import { RiFirebaseFill } from "react-icons/ri"
-import { TbBrandReactNative } from "react-icons/tb"
 import { MdDesignServices } from "react-icons/md"
 
 export default function Skills() {
