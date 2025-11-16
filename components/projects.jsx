@@ -37,6 +37,7 @@ export default function Projects() {
 
   const baseProjects = useMemo(() => ([
     {
+<<<<<<< HEAD
       title: "Portfolio Website",
       description:
         "A personal portfolio website showcasing projects, skills, and contact information with a modern design.",
@@ -55,6 +56,8 @@ export default function Projects() {
       githubUrl: "https://github.com/Win11HW/Movie",
     },
     {
+=======
+>>>>>>> 694b3db6d002c796e3dae5e27880f87e3aed4aea
       title: "E-Commerce Website",
       description:
         "An online store that showcases products with the ability to purchase, add to favorites, and search easily. It features a seamless interface and additional services that enhance the user experience.",
@@ -72,6 +75,18 @@ export default function Projects() {
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
       githubUrl: "https://github.com/Win11HW/Ecommerce/",
     },
+<<<<<<< HEAD
+=======
+    {
+      title: "Portfolio Website",
+      description:
+        "A personal portfolio website showcasing projects, skills, and contact information with a modern design.",
+      image: "/protfolio.webp",
+      tags: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
+      liveUrl: "https://dev-portfolio-work.vercel.app/",
+      githubUrl: "https://github.com/Win11HW/Portfolio",
+    },
+>>>>>>> 694b3db6d002c796e3dae5e27880f87e3aed4aea
   ]), [])
 
   const projects = useMemo(() => {
@@ -79,6 +94,7 @@ export default function Projects() {
     return [
       {
         ...baseProjects[0],
+<<<<<<< HEAD
         title: 'موقع معرض أعمال',
         description: 'موقع شخصي لعرض المشاريع والمهارات ومعلومات التواصل بتصميم حديث وتجربة استخدام مريحة.',
       },
@@ -89,14 +105,28 @@ export default function Projects() {
       },
       {
         ...baseProjects[2],
+=======
+>>>>>>> 694b3db6d002c796e3dae5e27880f87e3aed4aea
         title: 'موقع تجارة إلكترونية',
         description: 'متجر إلكتروني يعرض المنتجات مع إمكانية الشراء، والإضافة للمفضّلة، والبحث بسهولة. يتميز بواجهة سلسة وخدمات إضافية تحسّن تجربة المستخدم.',
       },
       {
+<<<<<<< HEAD
         ...baseProjects[3],
         title: 'لوحة تحكّم للتجارة الإلكترونية',
         description: 'لوحة تحكّم للمشرف والمستخدم لإضافة العناصر أو حذفها أو تعديلها، مع العديد من الأدوات المساعدة لإدارة المتجر.',
       },
+=======
+        ...baseProjects[1],
+        title: 'لوحة تحكّم للتجارة الإلكترونية',
+        description: 'لوحة تحكّم للمشرف والمستخدم لإضافة العناصر أو حذفها أو تعديلها، مع العديد من الأدوات المساعدة لإدارة المتجر.',
+      },
+      {
+        ...baseProjects[2],
+        title: 'موقع معرض أعمال',
+        description: 'موقع شخصي لعرض المشاريع والمهارات ومعلومات التواصل بتصميم حديث وتجربة استخدام مريحة.',
+      },
+>>>>>>> 694b3db6d002c796e3dae5e27880f87e3aed4aea
     ]
   }, [lang, baseProjects])
 
