@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useMemo } from "react"
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaPhp, FaBootstrap, FaNpm, FaDocker} from "react-icons/fa"
-import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiJest, SiWebpack, SiVercel, SiFirebase, SiFramer, SiSass, } from "react-icons/si"
+import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiJest, SiWebpack, SiVercel, SiShadcnui, SiFirebase, SiFramer, SiSass, } from "react-icons/si"
 import { RiFirebaseFill } from "react-icons/ri"
 import { MdDesignServices } from "react-icons/md"
 
@@ -65,6 +65,7 @@ export default function Skills() {
     { name: "Next.js", icon: <SiNextdotjs size={36} /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" size={36} /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3]" size={36} /> },
+    { name: "Shadcn", icon: <SiShadcnui className="text-[#FFFFFF]" size={36} /> },
     { name: "UI/UX Design", icon: <MdDesignServices className="text-purple-500" size={36} /> },
     { name: "php", icon: <FaPhp className="text-[#8892BF]" size={24} /> },
     { name: "Mysql", icon: <SiMysql className="text-[#F29111]" size={24} /> },
