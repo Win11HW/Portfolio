@@ -15,8 +15,8 @@ export const metadata = {
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export default function RootLayout({ children }) {
-  const cookieStore = cookies()
+export default async function RootLayout({ children }) {
+  const cookieStore = await cookies()
   const cookieLang = cookieStore.get("lang")?.value
   // Default to Arabic when not set; only force EN if cookie explicitly 'en'
 
