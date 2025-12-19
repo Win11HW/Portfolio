@@ -76,7 +76,7 @@ export default function Projects() {
       title: "pharmacy Website",
       description:
         "Your trusted partner in integrated healthcare. We offer you the finest medicines and medical products with outstanding 24/7 consultation service.",
-      image: "/Health.png",
+      image: "/Health.webp",
       tags: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "axios", "shadcn"],
       liveUrl: "https://alshifa-pharmacy.vercel.app/",
     },
@@ -84,7 +84,7 @@ export default function Projects() {
       title: "Shipping company Website",
       description:
         "We offer integrated sea freight solutions and professional logistics services to transport your goods worldwide with the highest standards of quality and safety.",
-      image: "/Ship.png",
+      image: "/Ship.webp",
       tags: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "axios", "shadcn"],
       liveUrl: "https://sea-phrase.vercel.app",
     },
