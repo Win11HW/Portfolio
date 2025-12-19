@@ -61,7 +61,7 @@ export default function Projects() {
       image: "/store.webp",
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
-      githubUrl: "hhttps://github.com/Win11HW/Ecommerce/",
+      githubUrl: "https://github.com/Win11HW/Ecommerce/",
     },
     {
       title: "E-Commerce Dashboard Website",
@@ -71,6 +71,22 @@ export default function Projects() {
       tags: ["HTML", "CSS", "JavaScript", "php", "mysql"],
       liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
       githubUrl: "https://github.com/Win11HW/Ecommerce/",
+    },
+    {
+      title: "pharmacy Website",
+      description:
+        "Your trusted partner in integrated healthcare. We offer you the finest medicines and medical products with outstanding 24/7 consultation service.",
+      image: "/Health.png",
+      tags: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "axios", "shadcn"],
+      liveUrl: "https://alshifa-pharmacy.vercel.app/",
+    },
+    {
+      title: "Shipping company Website",
+      description:
+        "We offer integrated sea freight solutions and professional logistics services to transport your goods worldwide with the highest standards of quality and safety.",
+      image: "/Ship.png",
+      tags: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "axios", "shadcn"],
+      liveUrl: "https://sea-phrase.vercel.app",
     },
   ]), [])
 
@@ -96,6 +112,16 @@ export default function Projects() {
         ...baseProjects[3],
         title: 'لوحة تحكّم للتجارة الإلكترونية',
         description: 'لوحة تحكّم للمشرف والمستخدم لإضافة العناصر أو حذفها أو تعديلها، مع العديد من الأدوات المساعدة لإدارة المتجر.',
+      },
+      {
+        ...baseProjects[4],
+        title: 'موقع الصيدلية الإلكتروني',
+        description: 'شريكك الموثوق في الرعاية الصحية المتكاملة نقدم لكم أجود الأدوية والمستحضرات الطبية مع خدمة استشارية متميزة على مدار الساعة',
+      },
+      {
+        ...baseProjects[5],
+        title: 'موقع شركة الشحن',
+        description: 'نقدم حلول شحن بحري متكاملة وخدمات لوجستية احترافية لنقل بضائعك إلى جميع أنحاء العالم بأعلى معايير الجودة والأمان',
       },
     ]
   }, [lang, baseProjects])
@@ -169,6 +195,7 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="flex gap-4">
+                {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     className="flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors"
@@ -178,6 +205,9 @@ export default function Projects() {
                     <ExternalLink size={16} />
                     <span suppressHydrationWarning>{t.live}</span>
                   </a>
+                )}
+
+                {project.githubUrl && (
                   <a
                     href={project.githubUrl}
                     className="flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors"
@@ -187,7 +217,9 @@ export default function Projects() {
                     <Github size={16} />
                     <span suppressHydrationWarning>{t.source}</span>
                   </a>
-                </div>
+                )}
+              </div>
+
               </div>
             </motion.div>
           ))}
