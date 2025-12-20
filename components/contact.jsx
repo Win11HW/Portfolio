@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
 import { Send, Mail, Phone, MapPin } from "lucide-react";
-import React, { useRef, useState, useEffect, useMemo } from 'react';
-import emailjs from '@emailjs/browser';
-import { ToastContainer, toast, Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useRef, useState, useEffect, useMemo } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 // EmailJS env variables (Next.js)
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -13,109 +12,100 @@ const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const form = useRef(null);
-  const [status, setStatus] = useState("");
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState("en");
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      setLang(document.documentElement.lang === 'ar' ? 'ar' : 'en');
+    if (typeof document !== "undefined") {
+      setLang(document.documentElement.lang === "ar" ? "ar" : "en");
     }
   }, []);
 
   const t = useMemo(() => {
-    if (lang === 'ar') {
+    if (lang === "ar") {
       return {
-        headingA: 'تواصل',
-        headingB: 'معي',
-        intro: 'هل لديك مشروع أو ترغب في التعاون؟ تواصل معي عبر النموذج أدناه أو من خلال معلومات الاتصال.',
-        contactInfo: 'معلومات الاتصال',
-        email: 'البريد الإلكتروني',
-        phone: 'الهاتف',
-        location: 'الموقع',
-        follow: 'تابعني',
-        yourName: 'اسمك',
-        yourEmail: 'بريدك الإلكتروني',
-        subject: 'الموضوع',
-        message: 'الرسالة',
-        namePlaceholder: 'Ayoub Alayoubi',
-        emailPlaceholder: 'ayoub@example.com',
-        subjectPlaceholder: 'استفسار مشروع',
-        messagePlaceholder: 'مرحبًا، أود التحدث حول...',
-        send: 'إرسال الرسالة',
-        city: 'ليبيا، طرابلس',
+        headingA: "تواصل",
+        headingB: "معي",
+        intro:
+          "هل لديك مشروع أو ترغب في التعاون؟ تواصل معي عبر النموذج أدناه أو من خلال معلومات الاتصال.",
+        contactInfo: "معلومات الاتصال",
+        email: "البريد الإلكتروني",
+        phone: "الهاتف",
+        location: "الموقع",
+        yourName: "اسمك",
+        yourEmail: "بريدك الإلكتروني",
+        subject: "الموضوع",
+        message: "الرسالة",
+        namePlaceholder: "Ayoub Alayoubi",
+        emailPlaceholder: "ayoub@example.com",
+        subjectPlaceholder: "استفسار مشروع",
+        messagePlaceholder: "مرحبًا، أود التحدث حول...",
+        send: "إرسال الرسالة",
+        city: "ليبيا، طرابلس",
       };
     }
 
     return {
-      headingA: 'Get In',
-      headingB: 'Touch',
-      intro: 'Have a project in mind or want to collaborate? Feel free to reach out to me using the form below or through my contact information.',
-      contactInfo: 'Contact Information',
-      email: 'Email',
-      phone: 'Phone',
-      location: 'Location',
-      follow: 'Follow Me',
-      yourName: 'Your Name',
-      yourEmail: 'Your Email',
-      subject: 'Subject',
-      message: 'Message',
-      namePlaceholder: 'Ayoub Alayoubi',
-      emailPlaceholder: 'ayoub@example.com',
-      subjectPlaceholder: 'Project Inquiry',
+      headingA: "Get In",
+      headingB: "Touch",
+      intro:
+        "Have a project in mind or want to collaborate? Feel free to reach out to me using the form below or through my contact information.",
+      contactInfo: "Contact Information",
+      email: "Email",
+      phone: "Phone",
+      location: "Location",
+      yourName: "Your Name",
+      yourEmail: "Your Email",
+      subject: "Subject",
+      message: "Message",
+      namePlaceholder: "Ayoub Alayoubi",
+      emailPlaceholder: "ayoub@example.com",
+      subjectPlaceholder: "Project Inquiry",
       messagePlaceholder: "Hello, I'd like to talk about...",
-      send: 'Send Message',
-      city: 'Libya, Tripoli',
+      send: "Send Message",
+      city: "Libya, Tripoli",
     };
   }, [lang]);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setStatus('');
+
+    if (!form.current) return;
 
     if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      console.error('EmailJS environment variables are missing');
-      toast.error('Configuration error. Please try again later.');
+      toast.error("Configuration error. Please try again later.");
       return;
     }
 
-    emailjs.sendForm(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      form.current,
-      PUBLIC_KEY
-    ).then(
-      () => {
-        toast.success('Message sent successfully!', {
-          position: 'top-left',
-          autoClose: 5000,
-          theme: 'light',
-          transition: Bounce,
-        });
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then(() => {
+        toast.success("Message sent successfully!");
         form.current.reset();
-      },
-      (error) => {
-        toast.error('❌ Failed to send message. Please try again.', {
-          position: 'top-left',
-          autoClose: 5000,
-          theme: 'light',
-          transition: Bounce,
-        });
-        console.error('FAILED...', error.text);
-      }
-    );
+      })
+      .catch((error) => {
+        toast.error("❌ Failed to send message. Please try again.");
+        console.error("EmailJS error:", error);
+      });
   };
 
   return (
     <section id="contact" className="py-20 bg-gray-950">
       <div className="container mx-auto px-4 md:px-6">
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span suppressHydrationWarning>{t.headingA} </span>
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent" suppressHydrationWarning>
+            <span
+              className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
+              suppressHydrationWarning
+            >
               {t.headingB}
             </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto" suppressHydrationWarning>
+          <p
+            className="text-gray-400 max-w-2xl mx-auto"
+            suppressHydrationWarning
+          >
             {t.intro}
           </p>
         </div>
@@ -123,7 +113,10 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-6" suppressHydrationWarning>
+            <h3
+              className="text-xl font-semibold mb-6"
+              suppressHydrationWarning
+            >
               {t.contactInfo}
             </h3>
 
@@ -133,7 +126,7 @@ export default function Contact() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1" suppressHydrationWarning>
+                  <h4 className="font-medium mb-1">
                     {t.email}
                   </h4>
                   <a
@@ -150,7 +143,7 @@ export default function Contact() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1" suppressHydrationWarning>
+                  <h4 className="font-medium mb-1">
                     {t.phone}
                   </h4>
                   <a
@@ -167,12 +160,10 @@ export default function Contact() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1" suppressHydrationWarning>
+                  <h4 className="font-medium mb-1">
                     {t.location}
                   </h4>
-                  <p className="text-gray-400" suppressHydrationWarning>
-                    {t.city}
-                  </p>
+                  <p className="text-gray-400">{t.city}</p>
                 </div>
               </div>
             </div>
@@ -180,17 +171,14 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div>
-            <ToastContainer />
-
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2">
                     {t.yourName}
                   </label>
                   <input
                     type="text"
-                    id="name"
                     name="name"
                     required
                     placeholder={t.namePlaceholder}
@@ -199,12 +187,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label className="block text-sm font-medium mb-2">
                     {t.yourEmail}
                   </label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     required
                     placeholder={t.emailPlaceholder}
@@ -214,12 +201,11 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                   {t.subject}
                 </label>
                 <input
                   type="text"
-                  id="subject"
                   name="subject"
                   required
                   placeholder={t.subjectPlaceholder}
@@ -228,11 +214,10 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                   {t.message}
                 </label>
                 <textarea
-                  id="message"
                   name="message"
                   rows={5}
                   required
