@@ -3,9 +3,10 @@
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import emailjs from "@emailjs/browser";
-import { toast } from "react-toastify";
+import { toast, ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// EmailJS env variables (Next.js)
+// EmailJS env variables
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -72,24 +73,40 @@ export default function Contact() {
     if (!form.current) return;
 
     if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      toast.error("Configuration error. Please try again later.");
+      toast.error("Configuration error. Please try again.", {
+        position: "top-left",
+        autoClose: 5000,
+        theme: "light",
+        transition: Bounce,
+      });
       return;
     }
 
     emailjs
       .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
       .then(() => {
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully!", {
+          position: "top-left",
+          autoClose: 5000,
+          theme: "light",
+          transition: Bounce,
+        });
         form.current.reset();
       })
       .catch((error) => {
-        toast.error("❌ Failed to send message. Please try again.");
+        toast.error("❌ Failed to send message. Please try again.", {
+          position: "top-left",
+          autoClose: 5000,
+          theme: "light",
+          transition: Bounce,
+        });
         console.error("EmailJS error:", error);
       });
   };
 
   return (
     <section id="contact" className="py-20 bg-gray-950">
+      <ToastContainer /> 
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -102,37 +119,24 @@ export default function Contact() {
               {t.headingB}
             </span>
           </h2>
-          <p
-            className="text-gray-400 max-w-2xl mx-auto"
-            suppressHydrationWarning
-          >
+          <p className="text-gray-400 max-w-2xl mx-auto" suppressHydrationWarning>
             {t.intro}
           </p>
         </div>
 
+        {/* Contact Info + Form */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3
-              className="text-xl font-semibold mb-6"
-              suppressHydrationWarning
-            >
-              {t.contactInfo}
-            </h3>
-
+            <h3 className="text-xl font-semibold mb-6">{t.contactInfo}</h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-gray-800 rounded-lg text-purple-500">
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">
-                    {t.email}
-                  </h4>
-                  <a
-                    href="mailto:aybqam@gmail.com"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
+                  <h4 className="font-medium mb-1">{t.email}</h4>
+                  <a href="mailto:aybqam@gmail.com" className="text-gray-400 hover:text-white transition-colors">
                     aybqam@gmail.com
                   </a>
                 </div>
@@ -143,13 +147,8 @@ export default function Contact() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">
-                    {t.phone}
-                  </h4>
-                  <a
-                    href="tel:+218948606475"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
+                  <h4 className="font-medium mb-1">{t.phone}</h4>
+                  <a href="tel:+218948606475" className="text-gray-400 hover:text-white transition-colors">
                     (+218) 948606475
                   </a>
                 </div>
@@ -160,9 +159,7 @@ export default function Contact() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">
-                    {t.location}
-                  </h4>
+                  <h4 className="font-medium mb-1">{t.location}</h4>
                   <p className="text-gray-400">{t.city}</p>
                 </div>
               </div>
@@ -174,9 +171,7 @@ export default function Contact() {
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    {t.yourName}
-                  </label>
+                  <label className="block text-sm font-medium mb-2">{t.yourName}</label>
                   <input
                     type="text"
                     name="name"
@@ -187,9 +182,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    {t.yourEmail}
-                  </label>
+                  <label className="block text-sm font-medium mb-2">{t.yourEmail}</label>
                   <input
                     type="email"
                     name="email"
@@ -201,9 +194,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  {t.subject}
-                </label>
+                <label className="block text-sm font-medium mb-2">{t.subject}</label>
                 <input
                   type="text"
                   name="subject"
@@ -214,9 +205,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  {t.message}
-                </label>
+                <label className="block text-sm font-medium mb-2">{t.message}</label>
                 <textarea
                   name="message"
                   rows={5}
