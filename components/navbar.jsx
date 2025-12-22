@@ -9,10 +9,21 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [lang, setLang] = useState('en')
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
+      
+      // Update active section based on scroll position
+      const sections = ['home', 'about', 'skills', 'projects', 'contact']
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section)
+        if (element && window.scrollY >= element.offsetTop - 200) {
+          setActiveSection(section)
+          break
+        }
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -36,114 +47,130 @@ export default function Navbar() {
   const navLinks = useMemo(() => {
     if (lang === 'ar') {
       return [
-        { name: "الرئيسية", href: "#home" },
-        { name: "نبذة", href: "#about" },
-        { name: "المهارات", href: "#skills" },
-        { name: "المشاريع", href: "#projects" },
-        { name: "تواصل", href: "#contact" },
+        { name: "الرئيسية", href: "#home", id: "home" },
+        { name: "نبذة", href: "#about", id: "about" },
+        { name: "المهارات", href: "#skills", id: "skills" },
+        { name: "المشاريع", href: "#projects", id: "projects" },
+        { name: "تواصل", href: "#contact", id: "contact" },
       ]
     }
     return [
-      { name: "Home", href: "#home" },
-      { name: "About", href: "#about" },
-      { name: "Skills", href: "#skills" },
-      { name: "Projects", href: "#projects" },
-      { name: "Contact", href: "#contact" },
+      { name: "Home", href: "#home", id: "home" },
+      { name: "About", href: "#about", id: "about" },
+      { name: "Skills", href: "#skills", id: "skills" },
+      { name: "Projects", href: "#projects", id: "projects" },
+      { name: "Contact", href: "#contact", id: "contact" },
     ]
   }, [lang])
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md py-3 shadow-md" : "bg-transparent py-5"}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled 
+          ? "bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/[0.05] py-3" 
+          : "bg-transparent py-5"
+      }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-              Dev<span className="text-white">Portfolio</span>
+          <Link href="/" className="text-xl font-bold group">
+            <span className="gradient-text">
+              Dev
             </span>
+            <span className="text-white group-hover:text-gray-300 transition-colors">Portfolio</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <div key={link.name}>
-                <Link href={link.href} className="text-gray-300 hover:text-white transition-colors relative group">
-                  <span suppressHydrationWarning>{link.name}</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </div>
+              <Link 
+                key={link.name} 
+                href={link.href} 
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg
+                  ${activeSection === link.id 
+                    ? 'text-white' 
+                    : 'text-gray-400 hover:text-white'
+                  }`}
+              >
+                <span suppressHydrationWarning>{link.name}</span>
+                {activeSection === link.id && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-purple-500 rounded-full" />
+                )}
+              </Link>
             ))}
           </nav>
 
           {/* Social Icons + Language Toggle */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <a
               href="https://github.com/Win11HW"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-all hover:-translate-y-1 duration-200"
+              className="p-2 text-gray-400 hover:text-white hover:bg-white/[0.05] rounded-lg transition-all duration-300"
             >
-              <Github size={20} />
+              <Github size={18} />
             </a>
-            <div className="rounded-full">
-              <button
-                type="button"
-                onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-                className="flex items-center gap-2 px-3 py-1 rounded-full bg-transparent text-white text-xs tracking-wider border border-white hover:bg-white/20 transition"
-                aria-label="Toggle language"
-              >
-                <GrLanguage size={16} />
-                {lang === 'ar' ? 'EN' : 'AR'}
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all duration-300"
+              aria-label="Toggle language"
+            >
+              <GrLanguage size={14} />
+              <span>{lang === 'ar' ? 'EN' : 'AR'}</span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <button 
+            className="md:hidden p-2 text-gray-400 hover:text-white hover:bg-white/[0.05] rounded-lg transition-all" 
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden bg-gray-900 shadow-lg transition-all duration-300 ${
-          isOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
+        className={`md:hidden absolute top-full left-0 w-full bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/[0.05] transition-all duration-300 ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex flex-col space-y-4">
+        <div className="container mx-auto px-4 py-6">
+          <nav className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-white py-2 transition-colors"
+                className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300
+                  ${activeSection === link.id 
+                    ? 'text-white bg-white/[0.05]' 
+                    : 'text-gray-400 hover:text-white hover:bg-white/[0.03]'
+                  }`}
                 onClick={() => setIsOpen(false)}
               >
                 <span suppressHydrationWarning>{link.name}</span>
               </Link>
             ))}
-            <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+            <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/[0.05]">
               <a
                 href="https://github.com/Win11HW"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="p-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Github size={20} />
               </a>
-              <div className="rounded-full">
-                <button
-                  type="button"
-                  onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-transparent text-white text-sm font-semibold tracking-wider border-2 border-white hover:bg-white/20 transition"
-                  aria-label="Toggle language"
-                >
-                  <GrLanguage size={18} />
-                  {lang === 'ar' ? 'EN' : 'AR'}
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all"
+                aria-label="Toggle language"
+              >
+                <GrLanguage size={16} />
+                {lang === 'ar' ? 'EN' : 'AR'}
+              </button>
             </div>
           </nav>
         </div>

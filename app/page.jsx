@@ -10,7 +10,6 @@ import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import DarkVeil from '@/components/DarkVeil';
 
-
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -19,18 +18,18 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
-      <div className={`transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
-      <div className="relative min-h-screen  items-center  text-center bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950" style={{ width: '100%', height: '600px', position: 'relative' }}>
-      <DarkVeil />
-      <Hero />
-      </div>
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+      <div className={`transition-opacity duration-700 ease-out ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+        <div className="relative min-h-screen">
+          <DarkVeil />
+          <Hero />
+        </div>
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer />
       </div>
     </main>
   )

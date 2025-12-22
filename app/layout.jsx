@@ -18,15 +18,13 @@ export const revalidate = 0
 export default async function RootLayout({ children }) {
   const cookieStore = await cookies()
   const cookieLang = cookieStore.get("lang")?.value
-  // Default to Arabic when not set; only force EN if cookie explicitly 'en'
-
   const lang = cookieLang === "ar" ? "ar" : "en"
   const dir = lang === "ar" ? "rtl" : "ltr"
   const fontClass = lang === "ar" ? cairo.className : inter.className
 
   return (
     <html lang={lang} dir={dir} className="dark scroll-smooth">
-      <body className={`${fontClass} bg-gray-950 text-gray-100 antialiased`}>
+      <body className={`${fontClass} bg-[#0a0a0f] text-gray-100 antialiased selection:bg-purple-500/30 selection:text-white`}>
         <Script id="gtm-script" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
