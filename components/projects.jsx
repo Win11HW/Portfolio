@@ -99,14 +99,14 @@ export default function Projects() {
   return (
     <section id="projects" className="section-padding bg-[#0a0a0f] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 left-0 w-48 sm:w-72 lg:w-96 h-48 sm:h-72 lg:h-96 bg-purple-500/5 rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px]" />
       
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
+      <div className="container mx-auto">
+        <div className="text-center mb-10 sm:mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-purple-400 bg-purple-500/10 rounded-full border border-purple-500/20"
+            className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-3 sm:mb-4 text-xs sm:text-sm font-medium text-purple-400 bg-purple-500/10 rounded-full border border-purple-500/20"
           >
             Portfolio
           </motion.span>
@@ -114,7 +114,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="section-title mb-4"
+            className="section-title mb-3 sm:mb-4"
           >
             <span suppressHydrationWarning>{t.heading}</span>
           </motion.h2>
@@ -128,7 +128,7 @@ export default function Projects() {
           </motion.p>
         </div>
 
-        <motion.div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -137,7 +137,7 @@ export default function Projects() {
               transition={{ delay: index * 0.1 }}
               className="glass-card group overflow-hidden"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
@@ -145,28 +145,29 @@ export default function Projects() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-60" />
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Show buttons always on mobile, hover on desktop */}
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                   {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-colors">
-                      <ExternalLink size={16} className="text-white" />
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 sm:bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/30 sm:hover:bg-white/20 transition-colors">
+                      <ExternalLink size={14} className="sm:w-4 sm:h-4 text-white" />
                     </a>
                   )}
                   {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-colors">
-                      <Github size={16} className="text-white" />
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 sm:bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/30 sm:hover:bg-white/20 transition-colors">
+                      <Github size={14} className="sm:w-4 sm:h-4 text-white" />
                     </a>
                   )}
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-purple-400 transition-colors">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 group-hover:text-purple-400 transition-colors">{project.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="px-2.5 py-1 bg-white/[0.05] rounded-md text-xs text-gray-400">{tag}</span>
+                    <span key={tag} className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white/[0.05] rounded-md text-[10px] sm:text-xs text-gray-400">{tag}</span>
                   ))}
                   {project.tags.length > 3 && (
-                    <span className="px-2.5 py-1 bg-white/[0.05] rounded-md text-xs text-gray-500">+{project.tags.length - 3}</span>
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white/[0.05] rounded-md text-[10px] sm:text-xs text-gray-500">+{project.tags.length - 3}</span>
                   )}
                 </div>
               </div>
@@ -178,11 +179,11 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8 }}
-          className="text-center mt-12"
+          className="text-center mt-8 sm:mt-12"
         >
-          <a href="#" className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors group">
+          <a href="#" className="inline-flex items-center gap-2 text-sm sm:text-base text-purple-400 hover:text-purple-300 transition-colors group">
             <span suppressHydrationWarning>{t.viewAll}</span>
-            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </motion.div>
       </div>

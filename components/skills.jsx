@@ -72,36 +72,36 @@ export default function Skills() {
   return (
     <section id="skills" className="section-padding bg-[#08080c] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-      <div className="absolute bottom-1/3 left-0 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px]" />
+      <div className="absolute bottom-1/3 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/5 rounded-full blur-[80px] sm:blur-[100px]" />
       
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20" suppressHydrationWarning>{t.core}</span>
-          <h2 className="section-title mb-4" suppressHydrationWarning>{t.headingMy}</h2>
+      <div className="container mx-auto">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-3 sm:mb-4 text-xs sm:text-sm font-medium text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20" suppressHydrationWarning>{t.core}</span>
+          <h2 className="section-title mb-3 sm:mb-4" suppressHydrationWarning>{t.headingMy}</h2>
           <p className="section-subtitle" suppressHydrationWarning>{t.subtitle}</p>
         </div>
 
         <div ref={ref} className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4 mb-10 sm:mb-16">
             {skills.map((skill, index) => (
               <div
                 key={skill.name}
-                className="glass-card glass-card-hover p-6 flex flex-col items-center justify-center gap-3 group"
+                className="glass-card glass-card-hover p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center gap-2 sm:gap-3 group"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="transform group-hover:scale-110 transition-transform duration-300">{skill.icon}</div>
-                <span className="text-sm font-medium text-gray-300 text-center">{skill.name}</span>
+                <div className="transform group-hover:scale-110 transition-transform duration-300 [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-7 sm:[&>svg]:h-7 md:[&>svg]:w-8 md:[&>svg]:h-8">{skill.icon}</div>
+                <span className="text-xs sm:text-sm font-medium text-gray-300 text-center">{skill.name}</span>
               </div>
             ))}
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-lg font-semibold mb-6 text-center text-gray-400" suppressHydrationWarning>{t.tools}</h3>
-            <div className="flex flex-wrap justify-center gap-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-center text-gray-400" suppressHydrationWarning>{t.tools}</h3>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               {technologies.map((tech) => (
-                <div key={tech.name} className="glass-card glass-card-hover px-4 py-3 flex items-center gap-2">
-                  {tech.icon}
-                  <span className="text-sm text-gray-300">{tech.name}</span>
+                <div key={tech.name} className="glass-card glass-card-hover px-3 py-2 sm:px-4 sm:py-3 flex items-center gap-2">
+                  <span className="[&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">{tech.icon}</span>
+                  <span className="text-xs sm:text-sm text-gray-300">{tech.name}</span>
                 </div>
               ))}
             </div>
