@@ -163,7 +163,7 @@ export default function Projects() {
                 <h3 className="text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 group-hover:text-purple-400 transition-colors">{project.title}</h3>
                 <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {project.tags.slice(0, 3).map((tag) => (
+                  {project.tags.slice(0, 5).map((tag) => (
                     <span key={tag} className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white/[0.05] rounded-md text-[10px] sm:text-xs text-gray-400">{tag}</span>
                   ))}
                   {project.tags.length > 3 && (
