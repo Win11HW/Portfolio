@@ -55,18 +55,9 @@ export default function Projects() {
     {
       title: "E-Commerce Website",
       description: "An online store with product showcase, favorites, and search functionality with a seamless interface.",
-      image: "/store.webp",
-      tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-      liveUrl: "http://ecommerce-your-choice.atwebpages.com/",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/",
-    },
-    {
-      title: "E-Commerce Dashboard",
-      description: "Admin dashboard for managing products, users, and orders with comprehensive tools.",
-      image: "/dashboard.webp",
-      tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-      liveUrl: "http://ecommerce-your-choice.atwebpages.com/dashboard",
-      githubUrl: "https://github.com/Win11HW/Ecommerce/",
+      image: "/ecommerce.webp",
+      tags: ["Next.js", "React", "Nodejs", "Mongodb", "Tailwind CSS"],
+      liveUrl: "https://store-techzone.vercel.app/",
     },
     {
       title: "Pharmacy Website",
