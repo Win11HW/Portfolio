@@ -43,6 +43,7 @@ export default function Projects() {
       tags: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
       liveUrl: "https://dev-portfolio-work.vercel.app/",
       githubUrl: "https://github.com/Win11HW/Portfolio",
+      iconColor: "text-White-400",
     },
     {
       title: "Movie Website",
@@ -51,6 +52,7 @@ export default function Projects() {
       tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://movielify.vercel.app/",
       githubUrl: "https://github.com/Win11HW/Movie",
+      iconColor: "text-White-400",
     },
     {
       title: "E-Commerce Website",
@@ -58,6 +60,7 @@ export default function Projects() {
       image: "/ecommerce.webp",
       tags: ["Next.js", "React", "Nodejs", "Mongodb", "Tailwind CSS"],
       liveUrl: "https://store-techzone.vercel.app/",
+      iconColor: "text-black",
     },
     {
       title: "Pharmacy Website",
@@ -65,6 +68,7 @@ export default function Projects() {
       image: "/Health.webp",
       tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://alshifa-pharmacy.vercel.app/",
+      iconColor: "text-White-400", 
     },
     {
       title: "Shipping Company",
@@ -72,7 +76,9 @@ export default function Projects() {
       image: "/Ship.webp",
       tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://sea-phrase.vercel.app",
+      iconColor: "text-White-400",
     },
+    
   ]), [])
 
   const projects = useMemo(() => {
@@ -139,7 +145,7 @@ export default function Projects() {
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 sm:bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/30 sm:hover:bg-white/20 transition-colors">
-                      <ExternalLink size={14} className="sm:w-4 sm:h-4 text-white" />
+                      <ExternalLink size={14} className={`sm:w-4 sm:h-4 ${project.iconColor}`} />
                     </a>
                   )}
                   {project.githubUrl && (
