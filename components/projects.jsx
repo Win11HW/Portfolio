@@ -56,7 +56,7 @@ export default function Projects() {
     },
     {
       title: "E-Commerce Website",
-      description: "An online store with product showcase, favorites, and search functionality with a seamless interface.",
+      description: "An online store for selling technology products with a modern and user-friendly design featuring an integrated administrative control panel to manage products, inventory, and orders easily and securely, with the potential for future expansion.",
       image: "/ecommerce.webp",
       tags: ["Next.js", "React", "Nodejs", "Mongodb", "Tailwind CSS"],
       liveUrl: "https://store-techzone.vercel.app/",
@@ -86,7 +86,7 @@ export default function Projects() {
     return [
       { ...baseProjects[0], title: 'موقع معرض أعمال', description: 'موقع شخصي لعرض المشاريع والمهارات ومعلومات التواصل بتصميم حديث.' },
       { ...baseProjects[1], title: 'موقع افلام', description: 'وجهتك لاكتشاف الأفلام المذهلة والمقاطع الدعائية والمعلومات التفصيلية.' },
-      { ...baseProjects[2], title: 'موقع تجارة إلكترونية', description: 'متجر إلكتروني يعرض المنتجات مع إمكانية الشراء والإضافة للمفضّلة.' },
+      { ...baseProjects[2], title: 'موقع متجر إلكتروني', description: 'متجر إلكتروني لبيع المنتجات التقنية بتصميم حديث وسهل الاستخدام يضم لوحة تحكم إدارية متكاملة لإدارة المنتجات المخزون والطلبات بكل سهولة وأمان مع قابلية للتطوير مستقبلًا.' },
       { ...baseProjects[3], title: 'موقع الصيدلية', description: 'شريكك الموثوق في الرعاية الصحية المتكاملة مع خدمة استشارية متميزة.' },
       { ...baseProjects[4], title: 'شركة الشحن', description: 'حلول شحن بحري متكاملة وخدمات لوجستية احترافية.' },
     ]
