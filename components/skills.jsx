@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState, useMemo } from "react"
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaPhp, FaBootstrap, FaNpm, FaDocker } from "react-icons/fa"
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaPhp, FaLaravel, FaBootstrap, FaNpm, FaDocker } from "react-icons/fa"
 import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiVercel, SiShadcnui } from "react-icons/si"
 import { MdDesignServices } from "react-icons/md"
 
@@ -51,11 +51,13 @@ export default function Skills() {
     { name: "JavaScript", icon: <FaJs className="text-[#F7DF1E]" size={32} /> },
     { name: "React", icon: <FaReact className="text-[#61DAFB]" size={32} /> },
     { name: "Next.js", icon: <SiNextdotjs size={32} /> },
+    { name: "Node,js", icon: <FaNodeJs className="text-[#47A248]" size={32} /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" size={32} /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3]" size={32} /> },
     { name: "Shadcn/ui", icon: <SiShadcnui className="text-white" size={32} /> },
     { name: "UI/UX Design", icon: <MdDesignServices className="text-purple-400" size={32} /> },
     { name: "PHP", icon: <FaPhp className="text-[#8892BF]" size={32} /> },
+    { name: "Laravel", icon: <FaLaravel className="text-[#E34F26]" size={32} /> },
     { name: "MySQL", icon: <SiMysql className="text-[#F29111]" size={32} /> },
     { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" size={32} /> },
   ]
@@ -73,7 +75,7 @@ export default function Skills() {
     <section id="skills" className="section-padding bg-[#08080c] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       <div className="absolute bottom-1/3 left-0 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/5 rounded-full blur-[80px] sm:blur-[100px]" />
-      
+
       <div className="container mx-auto">
         <div className="text-center mb-10 sm:mb-16">
           <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 mb-3 sm:mb-4 text-xs sm:text-sm font-medium text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20" suppressHydrationWarning>{t.core}</span>
