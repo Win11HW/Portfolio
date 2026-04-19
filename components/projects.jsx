@@ -32,9 +32,10 @@ function ProjectCard({ project, index, isInView }) {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1 }}
-      className="glass-card group overflow-hidden"
+      className="glass-card group overflow-hidden focus:outline-none"
+      tabIndex={0}
     >
-      <div className="relative h-40 sm:h-48 overflow-hidden">
+      <div className="relative h-44 overflow-hidden sm:h-48">
         <Image
           src={images[currentImageIndex] || "/placeholder.svg"}
           alt={project.title}
@@ -45,49 +46,75 @@ function ProjectCard({ project, index, isInView }) {
 
         {hasMultipleImages && (
           <>
+            {/* Previous / next — centered vertically; min 44px tap targets on mobile; clear of bottom strip */}
             <button
+              type="button"
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-black/70 transition-all sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100 z-10"
-              aria-label="السابق"
+              className="absolute left-1.5 top-1/2 z-30 -translate-y-1/2 flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-black/55 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-black/75 focus-visible:outline focus-visible:ring-2 focus-visible:ring-purple-400 sm:left-2 sm:h-9 sm:w-9 sm:p-1.5 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
+              aria-label="Previous image"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft className="h-5 w-5 sm:h-4 sm:w-4" strokeWidth={2} />
             </button>
+
             <button
+              type="button"
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-black/70 transition-all sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100 z-10"
-              aria-label="التالي"
+              className="absolute right-1.5 top-1/2 z-30 -translate-y-1/2 flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-black/55 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-black/75 focus-visible:outline focus-visible:ring-2 focus-visible:ring-purple-400 sm:right-2 sm:h-9 sm:w-9 sm:p-1.5 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
+              aria-label="Next image"
             >
-              <ChevronRight size={16} />
+              <ChevronRight className="h-5 w-5 sm:h-4 sm:w-4" strokeWidth={2} />
             </button>
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+
+            {/* Dot indicators — always at bottom, no shift */}
+            <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full bg-black/35 px-2.5 py-1.5 backdrop-blur-sm sm:gap-1.5 sm:px-2 sm:py-1">
               {images.map((_, idx) => (
                 <button
+                  type="button"
                   key={idx}
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     setCurrentImageIndex(idx)
                   }}
-                  className={`h-1.5 rounded-full transition-all ${idx === currentImageIndex ? "w-4 bg-purple-400" : "w-1.5 bg-white/50"}`}
-                  aria-label={`صورة ${idx + 1}`}
+                  className={`min-h-[10px] min-w-[10px] touch-manipulation rounded-full transition-all sm:min-h-0 sm:min-w-0 ${
+                    idx === currentImageIndex
+                      ? "h-2.5 w-6 bg-purple-400 sm:h-2 sm:w-5"
+                      : "h-2.5 w-2.5 bg-white/75 sm:h-2 sm:w-2"
+                  }`}
+                  aria-label={`Image ${idx + 1}`}
                 />
               ))}
             </div>
           </>
         )}
 
-        <div className="absolute top-3 right-3 flex gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 z-10">
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 sm:bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/30 sm:hover:bg-white/20 transition-colors">
-              <ExternalLink size={14} className={`sm:w-4 sm:h-4 ${project.iconColor || "text-white"}`} />
-            </a>
-          )}
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 sm:bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/30 sm:hover:bg-white/20 transition-colors">
-              <Github size={14} className="sm:w-4 sm:h-4 text-white" />
-            </a>
-          )}
-        </div>
+        {/* Live & GitHub buttons — always top‑right on all devices, small, appear on hover/focus */}
+        {(project.liveUrl || project.githubUrl) && (
+          <div className="absolute top-2 right-2 z-20 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open live demo"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/50 backdrop-blur-sm text-white transition-colors hover:bg-black/70 sm:h-auto sm:w-auto sm:p-1.5"
+              >
+                <ExternalLink className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View source on GitHub"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/50 backdrop-blur-sm text-white transition-colors hover:bg-black/70 sm:h-auto sm:w-auto sm:p-1.5"
+              >
+                <Github className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="p-4 sm:p-6">
@@ -99,7 +126,10 @@ function ProjectCard({ project, index, isInView }) {
         </p>
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {project.tags.slice(0, 5).map((tag) => (
-            <span key={tag} className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white/[0.05] rounded-md text-[10px] sm:text-xs text-gray-400">
+            <span
+              key={tag}
+              className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white/[0.05] rounded-md text-[10px] sm:text-xs text-gray-400"
+            >
               {tag}
             </span>
           ))}
@@ -157,7 +187,6 @@ export default function Projects() {
       images: ["/movie.png", "/movie 2.webp", "/movie 3.webp"],
       tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://movielify.vercel.app/",
-      githubUrl: "https://github.com/Win11HW/Movie",
       iconColor: "text-white-400",
     },
     {
