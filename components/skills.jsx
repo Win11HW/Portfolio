@@ -51,7 +51,7 @@ export default function Skills() {
     { name: "JavaScript", icon: <FaJs className="text-[#F7DF1E]" size={32} /> },
     { name: "React", icon: <FaReact className="text-[#61DAFB]" size={32} /> },
     { name: "Next.js", icon: <SiNextdotjs size={32} /> },
-    { name: "Node,js", icon: <FaNodeJs className="text-[#47A248]" size={32} /> },
+    { name: "Node.js", icon: <FaNodeJs className="text-[#47A248]" size={32} /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" size={32} /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3]" size={32} /> },
     { name: "Shadcn/ui", icon: <SiShadcnui className="text-white" size={32} /> },

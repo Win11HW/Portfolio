@@ -193,7 +193,7 @@ export default function Projects() {
       title: "E-Commerce Website",
       description: "An online store for selling technology products with a modern and user-friendly design featuring an integrated administrative control panel to manage products, inventory, and orders easily and securely, with the potential for future expansion.",
       images: ["/ecommerce.webp", "/ecommerce 2.webp", "/ecommerce 3.webp", "/ecommerce 4.webp", "/ecommerce 5.webp", "/ecommerce 6.webp", "/ecommerce 7.webp"],
-      tags: ["Next.js", "React", "Nodejs", "Mongodb", "Tailwind CSS"],
+      tags: ["Next.js", "React", "Node.js", "Mongodb", "Tailwind CSS"],
       liveUrl: "https://store-techzone.vercel.app/",
       iconColor: "text-black",
     },
