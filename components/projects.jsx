@@ -154,6 +154,7 @@ export default function Projects() {
       title: "Movie Website",
       description: "Your ultimate destination for discovering amazing movies, trailers, and detailed information.",
       image: "/movie.png",
+      images: ["/movie.png", "/movie 2.webp", "/movie 3.webp"],
       tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://movielify.vercel.app/",
       githubUrl: "https://github.com/Win11HW/Movie",
@@ -162,7 +163,7 @@ export default function Projects() {
     {
       title: "E-Commerce Website",
       description: "An online store for selling technology products with a modern and user-friendly design featuring an integrated administrative control panel to manage products, inventory, and orders easily and securely, with the potential for future expansion.",
-      images: ["/ecommerce.webp", "/ecommerce 2.png", "/ecommerce 3.png", "/ecommerce 4.png", "/ecommerce 5.png", "/ecommerce 6.png", "/ecommerce 7.png"],
+      images: ["/ecommerce.webp", "/ecommerce 2.webp", "/ecommerce 3.webp", "/ecommerce 4.webp", "/ecommerce 5.webp", "/ecommerce 6.webp", "/ecommerce 7.webp"],
       tags: ["Next.js", "React", "Nodejs", "Mongodb", "Tailwind CSS"],
       liveUrl: "https://store-techzone.vercel.app/",
       iconColor: "text-black",
