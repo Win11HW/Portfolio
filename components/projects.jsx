@@ -76,11 +76,10 @@ function ProjectCard({ project, index, isInView }) {
                     e.stopPropagation()
                     setCurrentImageIndex(idx)
                   }}
-                  className={`min-h-[10px] min-w-[10px] touch-manipulation rounded-full transition-all sm:min-h-0 sm:min-w-0 ${
-                    idx === currentImageIndex
+                  className={`min-h-[10px] min-w-[10px] touch-manipulation rounded-full transition-all sm:min-h-0 sm:min-w-0 ${idx === currentImageIndex
                       ? "h-2.5 w-6 bg-purple-400 sm:h-2 sm:w-5"
                       : "h-2.5 w-2.5 bg-white/75 sm:h-2 sm:w-2"
-                  }`}
+                    }`}
                   aria-label={`Image ${idx + 1}`}
                 />
               ))}
@@ -193,7 +192,7 @@ export default function Projects() {
       title: "E-Commerce Website",
       description: "An online store for selling technology products with a modern and user-friendly design featuring an integrated administrative control panel to manage products, inventory, and orders easily and securely, with the potential for future expansion.",
       images: ["/ecommerce.webp", "/ecommerce 2.webp", "/ecommerce 3.webp", "/ecommerce 4.webp", "/ecommerce 5.webp", "/ecommerce 6.webp", "/ecommerce 7.webp"],
-      tags: ["Next.js", "React", "Node.js", "Mongodb", "Tailwind CSS"],
+      tags: ["Next.js", "React", "Node.js", "Mongodb", "Tailwind CSS", "Cloudinary"],
       liveUrl: "https://store-techzone.vercel.app/",
       iconColor: "text-black",
     },
