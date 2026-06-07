@@ -60,7 +60,7 @@ export default function Skills() {
     { name: "Laravel", icon: <FaLaravel className="text-[#E34F26]" size={32} /> },
     { name: "MySQL", icon: <SiMysql className="text-[#F29111]" size={32} /> },
     { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" size={32} /> },
-    { name: "Supabase", icon: <SiSupabase className="text-[#47A248]" size={32} /> },
+    { name: "Supabase", icon: <SiSupabase className="text-[#3ECF8E]" size={32} /> },
   ]
 
   const technologies = [
