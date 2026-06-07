@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useMemo } from "react"
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaPhp, FaLaravel, FaBootstrap, FaNpm, FaDocker } from "react-icons/fa"
-import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiRedux, SiVercel, SiShadcnui } from "react-icons/si"
+import { SiNextdotjs, SiMysql, SiTailwindcss, SiMongodb, SiSupabase, SiRedux, SiVercel, SiShadcnui } from "react-icons/si"
 import { MdDesignServices } from "react-icons/md"
 
 export default function Skills() {
@@ -60,6 +60,7 @@ export default function Skills() {
     { name: "Laravel", icon: <FaLaravel className="text-[#E34F26]" size={32} /> },
     { name: "MySQL", icon: <SiMysql className="text-[#F29111]" size={32} /> },
     { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" size={32} /> },
+    { name: "Supabase", icon: <SiSupabase className="text-[#47A248]" size={32} /> },
   ]
 
   const technologies = [
