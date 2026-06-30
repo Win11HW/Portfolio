@@ -87,14 +87,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <Image
-              src="/Logo.png"
+              src="/favicon.ico"
               alt="Logo"
               width={50}
               height={50}
-              className="object-contain"
+              className="w-10 h-10 sm:w-10 sm:h-10 md:w-[50px] md:h-[50px] object-contain"
               priority
             />
-            <span className="text-xl font-bold hidden sm:block">
+            <span className="text-lg sm:text-xl font-bold hidden sm:block">
               <span className="gradient-text">Dev</span>
               <span className="text-white group-hover:text-gray-300 transition-colors duration-300">Portfolio</span>
             </span>
@@ -152,7 +152,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
               aria-label="Toggle language"
             >
               <GrLanguage size={14} />
@@ -163,7 +163,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-lg transition-all duration-300"
+            className="md:hidden p-2.5 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all duration-300"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -181,18 +181,18 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/[0.06] transition-all duration-300 ${isOpen
+        className={`md:hidden absolute top-full left-0 w-full bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/[0.06] transition-all duration-300 min-h-[52vh] ${isOpen
           ? "opacity-100 visible translate-y-0"
           : "opacity-0 invisible -translate-y-4"
-          }`}
+        }`}
       >
-        <div className="container mx-auto px-4 py-6">
-          <nav className="flex flex-col space-y-1">
+        <div className="container mx-auto px-4 pt-4 pb-5">
+          <nav className="flex flex-col gap-0.5">
             {navLinks.map((link, index) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${activeSection === link.id
+                className={`px-4 py-3.5 rounded-xl text-[15px] font-medium transition-all duration-300 ${activeSection === link.id
                   ? 'text-white bg-white/[0.06] border-l-2 border-purple-500'
                   : 'text-gray-400 hover:text-white hover:bg-white/[0.03]'
                   }`}
@@ -207,34 +207,26 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/[0.06]">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between pt-4 mt-3 border-t border-white/[0.06]">
+            <div className="flex items-center gap-2">
               <a
                 href="https://github.com/Win11HW"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-lg transition-all duration-300"
+                className="p-2.5 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all duration-300"
               >
                 <Github size={20} />
               </a>
               <button
                 type="button"
                 onClick={() => switchLang(lang === 'ar' ? 'en' : 'ar')}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
                 aria-label="Toggle language"
               >
                 <GrLanguage size={16} />
                 {lang === 'ar' ? 'EN' : 'AR'}
               </button>
             </div>
-            <a
-              href="#contact"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-medium shadow-lg shadow-purple-500/20 transition-all duration-300"
-            >
-              <Download size={14} />
-              {lang === 'ar' ? 'تواصل معي' : 'Hire Me'}
-            </a>
           </div>
         </div>
       </div>
