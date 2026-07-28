@@ -191,7 +191,7 @@ export default function Projects() {
     {
       title: "Smart Shipping System",
       description: "Built a full-featured, bilingual Arabic shipment management dashboard. Includes real-time tracking, revenue and financial analytics, interactive charts, multi‑status shipment handling, and an admin panel to manage shipments, Customers, and finances—all with a modern, responsive dark/light UI.",
-      images: ["/Management.webp", "/Management 2.webp", "/Management 3.webp", "/Management 4.webp", "/Management 5.webp", "/Management 6.webp", "/Management 7.webp", "/Management 8.webp", "/Management 9.webp"],
+      images: ["/Management 2.webp", "/Management 3.webp", "/Management 4.webp", "/Management 5.webp", "/Management 6.webp", "/Management 7.webp", "/Management 8.webp", "/Management 9.webp", "/Management.webp"],
       tags: ["React", "Next.js", "Laravel", "Tailwind CSS", "Supabase", "Recharts", "D3.js"],
       liveUrl: "https://shipping-trade-gateway.vercel.app/",
       iconColor: "text-white-400",
